@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Produtos — VoidTech</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+</head>
+<body class="theme-dark">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./">
+        <img src="assets/logo.svg" alt="VoidTech" class="logo" />
+        <span>VoidTech</span>
+      </a>
+
+      <form id="searchForm" class="searchbar">
+        <input id="q" type="search" placeholder="Buscar..." />
+        <button class="btn btn-neon" type="submit">Buscar</button>
+      </form>
+
+      <nav class="header-actions">
+        <button id="themeToggle" class="icon-btn">🌓</button>
+        <a href="login.html" class="icon-btn"><span id="navUser">Entrar</span></a>
+        <a href="#cart" class="icon-btn cart">🛒<span id="cartCount" class="badge">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container products-layout">
+    <aside class="filters">
+      <h3>Filtros</h3>
+      <div class="filter-group">
+        <label>Categoria</label>
+        <select id="fCategory"></select>
+      </div>
+      <div class="filter-group">
+        <label>Marca</label>
+        <select id="fBrand"></select>
+      </div>
+      <div class="filter-group">
+        <label>Preço</label>
+        <div class="range">
+          <input id="fMin" type="number" placeholder="Mín" min="0" />
+          <input id="fMax" type="number" placeholder="Máx" min="0" />
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>Especificações</label>
+        <input id="fSpec" type="text" placeholder="Ex.: DDR5, 144Hz, ATX" />
+      </div>
+      <div class="filter-actions">
+        <button id="applyFilters" class="btn btn-neon">Aplicar</button>
+        <button id="clearFilters" class="btn btn-outline">Limpar</button>
+      </div>
+
+      <div class="sort">
+        <label>Ordenar</label>
+        <select id="sortBy">
+          <option value="pop">Popularidade</option>
+          <option value="priceAsc">Preço: menor → maior</option>
+          <option value="priceDesc">Preço: maior → menor</option>
+          <option value="new">Lançamentos</option>
+        </select>
+      </div>
+    </aside>
+
+    <section class="results">
+      <h1 id="listTitle">Produtos</h1>
+      <div id="resultsGrid" class="product-grid"></div>
+      <div id="resultsEmpty" class="empty hidden">Nenhum resultado encontrado.</div>
+    </section>
+
+    <aside id="cart" class="cart-panel">
+      <div class="cart-header">
+        <h3>Carrinho</h3>
+        <button id="closeCart" class="icon-btn">✖</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-summary">
+        <div class="row"><span>Subtotal</span><strong id="cartSubtotal">R$ 0,00</strong></div>
+        <div class="row small">Frete calculado na finalização</div>
+        <button id="checkoutBtn" class="btn btn-neon w-100">Finalizar compra</button>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="site-footer small">
+    <div class="container">© <span id="year"></span> VoidTech</div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      UI.initHeader();
+      App.initProductsPage();
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
