@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VoidTech — Tecnologia de ponta em um só lugar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0b1020" />
+</head>
+<body class="theme-dark">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./">
+        <img src="imagens/voidtech.png" alt="VoidTech" class="logo" />
+        <span>VoidTech</span>
+      </a>
+
+      <form class="searchbar" action="products.html">
+        <input type="search" name="q" placeholder="Buscar produtos, marcas e componentes..." aria-label="Buscar" />
+        <button class="btn btn-neon" type="submit">Buscar</button>
+      </form>
+
+      <nav class="header-actions">
+        <button id="themeToggle" class="icon-btn" title="Alternar tema" aria-label="Tema claro/escuro">🌓</button>
+        <a href="login.html" class="icon-btn" title="Entrar" aria-label="Entrar"><span id="navUser">Entrar</span></a>
+        <a href="products.html" class="icon-btn" title="Produtos" aria-label="Produtos">🧭</a>
+        <a href="products.html#cart" class="icon-btn cart" aria-label="Carrinho">🛒<span id="cartCount" class="badge">0</span></a>
+      </nav>
+    </div>
+    <div class="mega-cats container">
+      <a href="products.html?cat=componentes">Componentes</a>
+      <a href="products.html?cat=pcs">PCs Montados</a>
+      <a href="products.html?cat=celulares">Celulares</a>
+      <a href="products.html?cat=monitores">Monitores</a>
+      <a href="products.html?cat=perifericos">Periféricos</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-copy">
+        <h1>Potência de outro nível</h1>
+        <p>Componentes, PCs prontos, celulares e periféricos com curadoria para gamers, criadores e profissionais.</p>
+        <div class="hero-cta">
+          <a href="products.html?sort=best" class="btn btn-neon">Mais vendidos</a>
+          <a href="products.html?tag=promo" class="btn btn-outline">Promoções</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="glow-orb"></div>
+        <img src="imagens/pc-gamer.webp" alt="Setup gamer futurista" />
+      </div>
+    </section>
+
+    <section class="container grid featured" id="featured">
+      <h2 class="section-title">Destaques</h2>
+      <div id="featuredGrid" class="product-grid"></div>
+    </section>
+
+    <section class="container promos">
+      <div class="promo-card">
+        <h3>Upgrade DDR5</h3>
+        <p>Latências baixas, clocks altos — memória para o futuro.</p>
+        <a href="products.html?cat=memoria" class="btn-link">Ver memórias</a>
+      </div>
+      <div class="promo-card">
+        <h3>SSDs NVMe</h3>
+        <p>Carregamentos instantâneos e produtividade sem limites.</p>
+        <a href="products.html?cat=armazenamento" class="btn-link">Ver SSDs</a>
+      </div>
+      <div class="promo-card">
+        <h3>Monitores 144/240Hz</h3>
+        <p>Movimento ultra fluído para duelar sem rastros.</p>
+        <a href="products.html?cat=monitores" class="btn-link">Ver monitores</a>
+      </div>
+    </section>
+
+    <section class="container grid bestsellers">
+      <h2 class="section-title">Mais vendidos</h2>
+      <div id="bestGrid" class="product-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>VoidTech</h4>
+        <p>Tecnologia de ponta com curadoria para você.</p>
+      </div>
+      <div>
+        <h4>Categorias</h4>
+        <ul>
+          <li><a href="products.html?cat=componentes">Componentes</a></li>
+          <li><a href="products.html?cat=pcs">PCs prontos</a></li>
+          <li><a href="products.html?cat=celulares">Celulares</a></li>
+          <li><a href="products.html?cat=monitores">Monitores</a></li>
+          <li><a href="products.html?cat=perifericos">Periféricos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Conta</h4>
+        <ul>
+          <li><a href="login.html">Entrar / Cadastrar</a></li>
+          <li><a href="products.html#cart">Carrinho</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Termos</a></li>
+          <li><a href="#">Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container small">© <span id="year"></span> VoidTech. Todos os direitos reservados.</div>
+  </footer>
+  <script src="js/script.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      UI.initHeader();
+      App.renderFeatured('#featuredGrid');
+      App.renderBests('#bestGrid');
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
