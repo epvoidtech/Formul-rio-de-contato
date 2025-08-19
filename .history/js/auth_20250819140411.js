@@ -49,44 +49,29 @@ if (document.querySelector("#login-form")) {
     });
 }
 
-
 // ======================
-// REGISTRO (corrigido)
+// REGISTRO
 // ======================
 if (document.querySelector("#register-form")) {
-  document.querySelector("#register-form").addEventListener("submit", (e) => {
-    e.preventDefault();
+    document.querySelector("#register-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = document.querySelector("#reg-email").value;
+        const password = document.querySelector("#reg-password").value;
 
-    const name = (document.querySelector("#reg-name")?.value || "").trim();
-    const email = document.querySelector("#reg-email").value.trim();
-    const password = document.querySelector("#reg-password").value;
-    const confirm = document.querySelector("#reg-confirm").value;
+        let users = getUsers();
 
-    if (password.length < 6) {
-      alert("A senha deve ter no mínimo 6 caracteres.");
-      return;
-    }
-    if (password !== confirm) {
-      alert("As senhas não coincidem.");
-      return;
-    }
+        if (users.some(u => u.email === email)) {
+            alert("Esse email já está cadastrado!");
+            return;
+        }
 
-    let users = getUsers(); // usa a chave "users" no localStorage
-
-    if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
-      alert("Esse email já está cadastrado!");
-      return;
-    }
-
-    const newUser = { name, email, password };
-    users.push(newUser);
-    saveUsers(users);
-
-    alert("Cadastro realizado com sucesso! Faça login para continuar.");
-    location.href = "login.html";
-  });
+        const newUser = { email, password };
+        users.push(newUser);
+        saveUsers(users);
+        alert("Cadastro realizado com sucesso!");
+        location.href = "login.html";
+    });
 }
-
 
 // ======================
 // EXIBIR USUÁRIO LOGADO NO INDEX
